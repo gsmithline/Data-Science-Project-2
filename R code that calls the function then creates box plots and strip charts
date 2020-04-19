@@ -1,0 +1,12 @@
+source("./GetAnimal_df.r")
+df<-GetAnimal_df("Mammal")
+#Code to graph the box plot and error bar with the amount of mammals per acre in all the parks
+s_d<- sd(df$num_per_acr, na.rm=TRUE)/sqrt(length(df$num_per_acr[!is.na (df$num_per_acr)]))
+plt<- ggplot(df, aes(y = num_per_acr)) + geom_boxplot(colour="red") + theme_minimal() + labs(x = "Mammal", y = "Mammals Per Acre Box Plot") + geom_boxplot(alpha=0.7) + stat_boxplot(geom="errorbar", width=0.2)
+print(plt)
+#Code to graph the box plot and error bar with the amount of mammals in all the parks 
+plt2<- ggplot(df, aes(y = num)) + geom_boxplot(colour="green") + theme_minimal() + labs(x = "Mammal", y = "Counts of Mammals in All Parks") + geom_boxplot(alpha=0.7) + stat_boxplot(geom="errorbar", width=0.2)
+print(plt2)
+#Strip chart graphs used for report 
+swarm<- stripchart(df$num, main = "Counts of Mammals in each Park")
+swarm<- stripchart(df$num_per_acr, main = "Mammals Per Acre")
