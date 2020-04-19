@@ -1,0 +1,22 @@
+#Code to graph Histogram
+source("./GetAnimal_df.r")
+#Code to create all the data frame needed for the 5 animals
+fish_df<-GetAnimal_df("Fish")
+mammal_df<-GetAnimal_df("Mammal")
+reptile_df<-GetAnimal_df("Reptile")
+amphibian_df<-GetAnimal_df("Amphibian")
+invertebrate_df<-GetAnimal_df("Invertebrate")
+#Code to sum the data frames for the 5 animals so we can get an exact number of how many animals are in the 5 selected categories 
+num_fish<-sum(fish_df$num)
+num_mammal<-sum(mammal_df$num)
+num_reptile<-sum(reptile_df$num)
+num_amphibian<- sum(amphibian_df$num)
+num_invertebrate<- sum(invertebrate_df$num)
+Histogram_Fish_Mammal_Reptile_Amphibian_Invertebrate<- c(num_fish, num_mammal, num_reptile, num_amphibian, num_invertebrate)
+names(Histogram_Fish_Mammal_Reptile_Amphibian_Invertebrate) <- c( "Fish", "Mammal","Reptile","Amphibian","Invertebrate")
+#Code to create a histogram of the data above
+hist(Histogram_Fish_Mammal_Reptile_Amphibian_Invertebrate,breaks=c(5), col="mediumorchid1", xlab = "Category")
+#Code to create a bar chart to explain why it is an alternate to graph "how many entries in the data set are from each category"
+barplot(Histogram_Fish_Mammal_Reptile_Amphibian_Invertebrate, main="Animal Counts Across the Data", xlab = "Count",  horiz=TRUE,
+        names.arg=c("Fish", "Mammal", "Reptile", "Amphib", "Invert"), col="#69b3a2",col.axis="red", 
+        cex.lab=1, las =1)
